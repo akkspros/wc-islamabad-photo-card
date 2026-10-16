@@ -1,0 +1,12 @@
+# Translation template for WordCamp Islamabad Photo Card Maker.
+# Regenerate with:
+#   wp i18n make-pot . languages/wc-islamabad-photo-card.pot --slug=wc-islamabad-photo-card
+msgid ""
+msgstr ""
+"Project-Id-Version: WordCamp Islamabad Photo Card Maker 1.0.0\n"
+"Report-Msgid-Bugs-To: https://islamabad.wordcamp.org/2026/\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Domain: wc-islamabad-photo-card\n"

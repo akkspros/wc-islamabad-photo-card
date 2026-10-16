@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.distignore
+.editorconfig
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+CHANGELOG.md
+README.md
+docs/screenshot-*.png
+node_modules
+*.zip

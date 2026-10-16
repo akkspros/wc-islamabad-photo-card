@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wc-islamabad/photo-card",
+	"title": "WordCamp Photo Card",
+	"category": "widgets",
+	"icon": "id-alt",
+	"description": "Lets visitors create and share a WordCamp Islamabad 2026 photo card.",
+	"keywords": [ "wordcamp", "photo", "card", "frame", "badge" ],
+	"textdomain": "wc-islamabad-photo-card",
+	"attributes": {
+		"title": { "type": "string", "default": "" },
+		"roles": { "type": "array", "items": { "type": "string" }, "default": [] },
+		"showName": { "type": "boolean", "default": true }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"editorScript": "wcipc-block-editor"
+}

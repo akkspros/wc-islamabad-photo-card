@@ -1,0 +1,765 @@
+/*
+ * WordCamp Islamabad Photo Card Maker.
+ * Every rule is scoped under .wcipc-app and written to hold up against theme
+ * styles for buttons, labels, inputs, checkboxes and range sliders.
+ */
+
+.wcipc-app {
+	--wcipc-primary: #0f7a4a;
+	--wcipc-dark: #06241e;
+	--wcipc-accent: #26d465;
+	--wcipc-ink: #111b16;
+	--wcipc-muted: #5a6a62;
+	--wcipc-line: #cfdcd4;
+	--wcipc-line-strong: #b9c9bf;
+	--wcipc-wash: #f0f6f0;
+	--wcipc-bg: #f0fbf4;
+	--wcipc-cream: #f9f4e4;
+	--wcipc-radius: 12px;
+
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1.5rem;
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: clamp(0.75rem, 2.5vw, 2rem);
+	color: var(--wcipc-ink);
+	background: var(--wcipc-bg);
+	background-image: none;
+	border: 1px solid #d3e9db;
+	border-top: 6px solid var(--wcipc-accent);
+	border-radius: 14px;
+	font-family: inherit;
+	font-size: 1rem;
+	line-height: 1.5;
+	text-align: start;
+}
+
+.wcipc-app *,
+.wcipc-app *::before,
+.wcipc-app *::after {
+	box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+	.wcipc-app {
+		grid-template-columns: minmax(0, 1fr) minmax(380px, 460px);
+		column-gap: clamp(1.5rem, 3vw, 3rem);
+		align-items: start;
+	}
+	.wcipc-app .wcipc-stage {
+		position: sticky;
+		top: 2rem;
+	}
+}
+
+/* ---------- Top bar ---------- */
+
+.wcipc-app .wcipc-brand {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: center;
+	gap: 0.85rem;
+	padding: 0 0 1rem;
+	margin: 0;
+	border-bottom: 1px solid rgba(6, 36, 30, 0.12);
+}
+
+.wcipc-app .wcipc-brand__logo {
+	flex: none;
+	display: block;
+	width: 48px;
+	height: 48px;
+	margin: 0;
+	padding: 2px;
+	object-fit: cover;
+	background: #fff;
+	border: 3px solid var(--wcipc-accent);
+	border-radius: 50%;
+	box-shadow: none;
+}
+
+.wcipc-app .wcipc-brand__name {
+	margin: 0;
+	padding: 0;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.25;
+	letter-spacing: 0;
+	text-transform: none;
+	color: var(--wcipc-dark);
+}
+
+.wcipc-app .wcipc-brand__meta {
+	margin: 0.1rem 0 0;
+	padding: 0;
+	font-size: 0.8125rem;
+	line-height: 1.35;
+	color: var(--wcipc-muted);
+}
+
+/* ---------- Preview ---------- */
+
+.wcipc-app .wcipc-stage {
+	position: relative;
+	border-radius: var(--wcipc-radius);
+	background: var(--wcipc-dark);
+	box-shadow: 0 0 0 1px rgba(6, 36, 30, 0.1), 0 18px 44px rgba(6, 36, 30, 0.22);
+	outline: 3px solid transparent;
+	outline-offset: 4px;
+	transition: outline-color 0.15s ease;
+}
+
+.wcipc-app .wcipc-stage.is-drop {
+	outline-color: var(--wcipc-accent);
+}
+
+.wcipc-app .wcipc-canvas {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	margin: 0;
+	border: 0;
+	border-radius: var(--wcipc-radius);
+	touch-action: none;
+	cursor: default;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.wcipc-app .wcipc-stage.has-photo .wcipc-canvas {
+	cursor: grab;
+}
+
+.wcipc-app .wcipc-canvas.is-dragging {
+	cursor: grabbing;
+}
+
+.wcipc-app .wcipc-canvas:focus-visible {
+	outline: 3px solid var(--wcipc-accent);
+	outline-offset: 3px;
+}
+
+/* ---------- Panel ---------- */
+
+.wcipc-app .wcipc-panel {
+	display: grid;
+	gap: 0;
+	margin: 0;
+	padding: 1.5rem;
+	background: #fff;
+	border: 1px solid #d3e9db;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(6, 36, 30, 0.08);
+}
+
+.wcipc-app .wcipc-head {
+	display: grid;
+	gap: 0.35rem;
+	padding: 0 0 1.25rem;
+}
+
+.wcipc-app .wcipc-title {
+	margin: 0;
+	padding: 0;
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.015em;
+	text-transform: none;
+	color: var(--wcipc-dark);
+}
+
+.wcipc-app .wcipc-help {
+	margin: 0;
+	padding: 0;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+	color: var(--wcipc-muted);
+	max-width: 46ch;
+}
+
+.wcipc-app .wcipc-section {
+	display: grid;
+	gap: 0.9rem;
+	margin: 0;
+	padding: 1.25rem 0;
+	border: 0;
+	border-top: 1px solid var(--wcipc-line);
+	min-width: 0;
+}
+
+.wcipc-app .wcipc-section__title,
+.wcipc-app .wcipc-roles legend {
+	float: none;
+	display: block;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	font-size: 0.75rem;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wcipc-muted);
+}
+
+.wcipc-app .wcipc-roles legend {
+	margin-bottom: 0.75rem;
+}
+
+.wcipc-app .wcipc-file {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+.wcipc-app .wcipc-file:focus-visible + .wcipc-btn {
+	outline: 3px solid var(--wcipc-accent);
+	outline-offset: 3px;
+}
+
+.wcipc-app .wcipc-upload {
+	position: relative;
+	display: block;
+}
+
+.wcipc-app .wcipc-status {
+	margin: 0;
+	min-height: 1.25em;
+	font-size: 0.875rem;
+	line-height: 1.4;
+	color: var(--wcipc-muted);
+}
+
+.wcipc-app .wcipc-status:empty {
+	display: none;
+}
+
+/* ---------- Buttons ---------- */
+
+.wcipc-app .wcipc-btn,
+.wcipc-app button.wcipc-btn,
+.wcipc-app label.wcipc-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	width: auto;
+	min-height: 46px;
+	margin: 0;
+	padding: 0.6rem 1.25rem;
+	border: 1.5px solid transparent;
+	border-radius: 10px;
+	box-shadow: none;
+	background-image: none;
+	font-family: inherit;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: none;
+	text-transform: none;
+	white-space: normal;
+	cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.wcipc-app .wcipc-btn:focus-visible {
+	outline: 3px solid var(--wcipc-accent);
+	outline-offset: 2px;
+}
+
+.wcipc-app .wcipc-upload .wcipc-btn {
+	display: flex;
+	width: 100%;
+	min-height: 54px;
+	font-size: 1rem;
+}
+
+.wcipc-app .wcipc-upload .wcipc-btn::before {
+	content: "";
+	flex: none;
+	width: 20px;
+	height: 20px;
+	background: var(--wcipc-dark);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 16V4m0 0 4.5 4.5M12 4 7.5 8.5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 16V4m0 0 4.5 4.5M12 4 7.5 8.5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.wcipc-app .wcipc-btn--primary {
+	background-color: var(--wcipc-accent);
+	border-color: var(--wcipc-accent);
+	color: var(--wcipc-dark);
+}
+
+.wcipc-app .wcipc-btn--primary:hover:not(:disabled) {
+	background-color: var(--wcipc-dark);
+	border-color: var(--wcipc-dark);
+	color: var(--wcipc-accent);
+}
+
+.wcipc-app .wcipc-btn--accent {
+	background-color: var(--wcipc-accent);
+	border-color: var(--wcipc-accent);
+	color: var(--wcipc-dark);
+}
+
+.wcipc-app .wcipc-btn--accent:hover:not(:disabled) {
+	background-color: var(--wcipc-dark);
+	border-color: var(--wcipc-dark);
+	color: var(--wcipc-accent);
+}
+
+/* Secondary, outlined: always clearly visible. */
+.wcipc-app .wcipc-btn--quiet,
+.wcipc-app button.wcipc-btn--quiet {
+	background-color: #fff;
+	border: 2px solid var(--wcipc-line);
+	color: var(--wcipc-dark);
+	min-height: 40px;
+	padding: 0.4rem 1rem;
+	font-size: 0.875rem;
+}
+
+.wcipc-app .wcipc-btn--quiet:hover:not(:disabled) {
+	background-color: var(--wcipc-wash);
+	border-color: var(--wcipc-primary);
+	color: var(--wcipc-ink);
+}
+
+.wcipc-app .wcipc-btn:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+.wcipc-app .wcipc-actions {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.75rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--wcipc-line);
+}
+
+/* ---------- Role picker ---------- */
+
+.wcipc-app .wcipc-roles {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.6rem;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+.wcipc-app .wcipc-roles legend {
+	grid-column: 1 / -1;
+}
+
+.wcipc-app .wcipc-role {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+.wcipc-app .wcipc-role input {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.wcipc-app .wcipc-role__box {
+	position: relative;
+	display: grid;
+	align-content: center;
+	gap: 0.1rem;
+	height: 100%;
+	min-height: 3.6rem;
+	padding: 0.65rem 2.1rem 0.65rem 2.6rem;
+	background: linear-gradient(135deg, #0b3a2d 0%, var(--wcipc-dark) 100%);
+	border: 1.5px solid rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	box-shadow: 0 1px 2px rgba(6, 36, 30, 0.25);
+	transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Role color: a dot inside a soft ring. */
+.wcipc-app .wcipc-role__box::before {
+	content: "";
+	position: absolute;
+	inset-inline-start: 0.85rem;
+	inset-block-start: 50%;
+	width: 1rem;
+	height: 1rem;
+	margin-top: -0.5rem;
+	background: var(--wcipc-role, var(--wcipc-primary));
+	border: 2px solid rgba(255, 255, 255, 0.9);
+	border-radius: 50%;
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+/* Check mark, shown for the selected frame. */
+.wcipc-app .wcipc-role__box::after {
+	content: "";
+	position: absolute;
+	inset-inline-end: 0.7rem;
+	inset-block-start: 50%;
+	width: 1.15rem;
+	height: 1.15rem;
+	margin-top: -0.575rem;
+	background: var(--wcipc-accent);
+	border-radius: 50%;
+	opacity: 0;
+	transform: scale(0.6);
+	transition: opacity 0.15s ease, transform 0.15s ease;
+	-webkit-mask: none;
+	mask: none;
+}
+
+.wcipc-app .wcipc-role:hover .wcipc-role__box {
+	border-color: var(--wcipc-accent);
+	transform: translateY(-1px);
+	box-shadow: 0 6px 14px rgba(6, 36, 30, 0.28);
+}
+
+.wcipc-app .wcipc-role input:checked + .wcipc-role__box {
+	background: linear-gradient(135deg, var(--wcipc-primary) 0%, #0b5c38 100%);
+	border-color: var(--wcipc-accent);
+	box-shadow: 0 0 0 2px var(--wcipc-accent), 0 8px 18px rgba(6, 36, 30, 0.3);
+}
+
+.wcipc-app .wcipc-role input:checked + .wcipc-role__box::after {
+	opacity: 1;
+	transform: scale(1);
+	background:
+		var(--wcipc-accent)
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306241e' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+		center / 70% no-repeat;
+}
+
+.wcipc-app .wcipc-role input:focus-visible + .wcipc-role__box {
+	outline: 3px solid var(--wcipc-accent);
+	outline-offset: 2px;
+}
+
+.wcipc-app .wcipc-role__label {
+	font-size: 0.6875rem;
+	font-weight: 500;
+	line-height: 1.2;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #ffffff;
+	opacity: 0.8;
+}
+
+.wcipc-app .wcipc-role__ribbon {
+	font-size: 0.875rem;
+	font-weight: 700;
+	line-height: 1.25;
+	color: #ffffff;
+	white-space: nowrap;
+}
+
+/* ---------- Fields ---------- */
+
+.wcipc-app .wcipc-field {
+	display: grid;
+	gap: 0.4rem;
+	margin: 0;
+}
+
+.wcipc-app .wcipc-field[hidden] {
+	display: none;
+}
+
+.wcipc-app .wcipc-field__row {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.wcipc-app .wcipc-field label {
+	display: block;
+	margin: 0;
+	padding: 0;
+	font-size: 0.875rem;
+	font-weight: 600;
+	line-height: 1.3;
+	text-transform: none;
+	letter-spacing: 0;
+	color: var(--wcipc-dark);
+}
+
+.wcipc-app .wcipc-val {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	color: var(--wcipc-muted);
+	background: none;
+	border: 0;
+}
+
+.wcipc-app .wcipc-field input[type="text"] {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	min-height: 44px;
+	margin: 0;
+	padding: 0.5rem 0.8rem;
+	font: inherit;
+	font-size: 0.9375rem;
+	color: var(--wcipc-ink);
+	background: #fff;
+	border: 2px solid var(--wcipc-line);
+	border-radius: 10px;
+	box-shadow: none;
+}
+
+.wcipc-app .wcipc-field input[type="text"]::placeholder {
+	color: #77877e;
+	opacity: 1;
+}
+
+.wcipc-app .wcipc-field input[type="text"]:focus-visible {
+	outline: 3px solid var(--wcipc-accent);
+	outline-offset: 1px;
+	border-color: var(--wcipc-primary);
+}
+
+/* Range sliders: fully restyled so theme and browser defaults never show. */
+.wcipc-app .wcipc-field input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	display: block;
+	width: 100%;
+	height: 28px;
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	cursor: pointer;
+}
+
+.wcipc-app .wcipc-field input[type="range"]::-webkit-slider-runnable-track {
+	height: 8px;
+	background: var(--wcipc-line);
+	border: 0;
+	border-radius: 999px;
+}
+
+.wcipc-app .wcipc-field input[type="range"]::-moz-range-track {
+	height: 8px;
+	background: var(--wcipc-line);
+	border: 0;
+	border-radius: 999px;
+}
+
+.wcipc-app .wcipc-field input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 26px;
+	height: 26px;
+	margin-top: -11px;
+	background: var(--wcipc-primary);
+	border: 4px solid #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px var(--wcipc-primary);
+}
+
+.wcipc-app .wcipc-field input[type="range"]::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	background: var(--wcipc-primary);
+	border: 4px solid #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px var(--wcipc-primary);
+}
+
+.wcipc-app .wcipc-field input[type="range"]:focus-visible {
+	outline: 3px solid var(--wcipc-accent);
+	outline-offset: 2px;
+	border-radius: 999px;
+}
+
+.wcipc-app .wcipc-field input[type="range"]:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+/* ---------- Auto fit switch and reset ---------- */
+
+.wcipc-app .wcipc-tools {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.75rem 1rem;
+	margin: 0.15rem 0 0;
+}
+
+.wcipc-app label.wcipc-switch {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	color: var(--wcipc-ink);
+	background: none;
+	border: 0;
+}
+
+.wcipc-app .wcipc-switch input.wcipc-autofit {
+	-webkit-appearance: none;
+	appearance: none;
+	position: relative;
+	flex: none;
+	display: inline-block;
+	width: 40px;
+	height: 24px;
+	margin: 0;
+	padding: 0;
+	background: var(--wcipc-line);
+	border: 0;
+	border-radius: 999px;
+	box-shadow: inset 0 0 0 1px var(--wcipc-line-strong);
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+
+.wcipc-app .wcipc-switch input.wcipc-autofit::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 3px;
+	inset-inline-start: 3px;
+	width: 18px;
+	height: 18px;
+	background: #fff;
+	border: 0;
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+	transition: transform 0.15s ease;
+}
+
+.wcipc-app .wcipc-switch input.wcipc-autofit::after {
+	content: none;
+	display: none;
+}
+
+.wcipc-app .wcipc-switch input.wcipc-autofit:checked {
+	background: var(--wcipc-primary);
+	box-shadow: none;
+}
+
+.wcipc-app .wcipc-switch input.wcipc-autofit:checked::before {
+	transform: translateX(16px);
+}
+
+.wcipc-app .wcipc-switch input.wcipc-autofit:focus-visible {
+	outline: 3px solid var(--wcipc-accent);
+	outline-offset: 2px;
+}
+
+.wcipc-app .wcipc-switch input.wcipc-autofit:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+.wcipc-app .wcipc-switch__text {
+	display: grid;
+	gap: 0;
+	color: var(--wcipc-ink);
+}
+
+.wcipc-app .wcipc-switch__label {
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--wcipc-ink);
+}
+
+.wcipc-app .wcipc-switch__hint {
+	display: block;
+	font-size: 0.75rem;
+	line-height: 1.3;
+	color: var(--wcipc-muted);
+}
+
+.wcipc-app .wcipc-notice {
+	margin: 0;
+	padding: 0.75rem 1rem;
+	background: #fff8e6;
+	border-inline-start: 4px solid var(--wcipc-accent);
+	color: var(--wcipc-ink);
+}
+
+@media (max-width: 420px) {
+	.wcipc-app .wcipc-roles,
+	.wcipc-app .wcipc-actions {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wcipc-app * {
+		transition: none !important;
+	}
+}
+
+@media (prefers-contrast: more) {
+	.wcipc-app .wcipc-role__box,
+	.wcipc-app .wcipc-field input[type="text"],
+	.wcipc-app .wcipc-btn--quiet {
+		border-color: var(--wcipc-dark);
+	}
+}
+
+/* ---------- Theme-proofing for text inside controls ---------- */
+
+.wcipc-app .wcipc-btn span,
+.wcipc-app .wcipc-upload-text {
+	color: inherit;
+	font: inherit;
+	letter-spacing: inherit;
+	text-transform: none;
+}
+
+.wcipc-app .wcipc-title,
+.wcipc-app .wcipc-brand__name,
+.wcipc-app .wcipc-brand__meta,
+.wcipc-app .wcipc-help,
+.wcipc-app .wcipc-status,
+.wcipc-app .wcipc-role__label,
+.wcipc-app .wcipc-role__ribbon {
+	font-family: inherit;
+}
